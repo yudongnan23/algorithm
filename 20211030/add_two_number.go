@@ -133,15 +133,15 @@ func main() {
 		wants []int
 	}{
 		{
-			name: "1",
+			name:  "1",
 			l1:    &ListNode{Val: 1, Next: &ListNode{Val: 2, Next: &ListNode{Val: 3}}},
 			l2:    &ListNode{Val: 4, Next: &ListNode{Val: 5, Next: &ListNode{Val: 6}}},
 			wants: []int{5, 7, 9},
 		},
 		{
-			name: "2",
-			l1: &ListNode{Val: 2, Next: &ListNode{Val: 9, Next: &ListNode{Val: 8}}},
-			l2: &ListNode{Val: 1, Next: &ListNode{Val: 1, Next: &ListNode{Val: 7}}},
+			name:  "2",
+			l1:    &ListNode{Val: 2, Next: &ListNode{Val: 9, Next: &ListNode{Val: 8}}},
+			l2:    &ListNode{Val: 1, Next: &ListNode{Val: 1, Next: &ListNode{Val: 7}}},
 			wants: []int{3, 0, 6, 1},
 		},
 		{
@@ -151,9 +151,9 @@ func main() {
 			wants: []int{6, 6, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
 		},
 		{
-			name: "4",
-			l1: &ListNode{Val: 2, Next: &ListNode{Val: 4, Next: &ListNode{Val: 3}}},
-			l2: &ListNode{Val: 5, Next: &ListNode{Val: 6, Next: &ListNode{Val: 4}}},
+			name:  "4",
+			l1:    &ListNode{Val: 2, Next: &ListNode{Val: 4, Next: &ListNode{Val: 3}}},
+			l2:    &ListNode{Val: 5, Next: &ListNode{Val: 6, Next: &ListNode{Val: 4}}},
 			wants: []int{7, 0, 8},
 		},
 	}

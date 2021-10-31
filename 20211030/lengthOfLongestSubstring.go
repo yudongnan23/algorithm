@@ -2,31 +2,35 @@ package main
 
 /**
  * 无重复字符的最长子串: https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/
+ * acacacacacacacacac
+ * sssd
+ * dvdf
+ * "tmmzuxt"
  */
 
 func lengthOfLongestSubstring(s string) int {
-	m := make(map[string]bool, 0)
+	m := make(map[string]int, 0)
 	count := 0
-	start := 0
-	end := 1
-	for i := range s {
-		if _, ok := m[string(s[i])]; ok {
-			m = make(map[string]bool, 0)
-			m[string(s[i])] = true
-			if start - end > count {
-				count = start - end
-			}
-			start = i
-			end = i + 1
+	start := -1
+	for end := range s {
+		if _, ok := m[string(s[end])]; ok {
+			start = m[string(s[end])]
+			m = deletePre(m, s, m[string(s[end])])
+			m[string(s[end])] = end
 			continue
 		}
 
-		m[string(s[i])] = true
-		end = end + 1
-		if end - start > count {
+		if end-start > count {
 			count = end - start
 		}
+		m[string(s[end])] = end
 	}
 	return count
 }
 
+func deletePre(m map[string]int, s string, end int)map[string]int{
+	for i := 0; i <= end; i ++{
+		delete(m, string(s[i]))
+	}
+	return m
+}
