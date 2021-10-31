@@ -1,5 +1,7 @@
 package main
 
+import "strings"
+
 /**
  * 无重复字符的最长子串: https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/
  * acacacacacacacacac
@@ -7,30 +9,55 @@ package main
  * dvdf
  * "tmmzuxt"
  */
-
 func lengthOfLongestSubstring(s string) int {
-	m := make(map[string]int, 0)
-	count := 0
-	start := -1
-	for end := range s {
-		if _, ok := m[string(s[end])]; ok {
-			start = m[string(s[end])]
-			m = deletePre(m, s, m[string(s[end])])
-			m[string(s[end])] = end
-			continue
-		}
+	placeMapping := make(map[string]int, len(s))
+	maxLength := 0
+	start := 0
+	end := 0
 
-		if end-start > count {
-			count = end - start
+	for i := range s {
+		end = i
+
+		if strings.Contains(s[start:end], string(s[i])) {
+			if end-start > maxLength {
+				maxLength = end - start
+			}
+
+			start = placeMapping[string(s[i])] + 1
 		}
-		m[string(s[end])] = end
+		placeMapping[string(s[i])] = i
+	}
+
+	if end-start+1 > maxLength {
+		maxLength = end - start + 1
+	}
+
+	return maxLength
+}
+
+/**
+ * 暴力破解
+ */
+func lengthOfLongestSubstringMethod2(s string) int {
+	count := 0
+	for i := range s {
+		curCount := maxLengthContinuous(s[i:])
+		if curCount > count {
+			count = curCount
+		}
 	}
 	return count
 }
 
-func deletePre(m map[string]int, s string, end int)map[string]int{
-	for i := 0; i <= end; i ++{
-		delete(m, string(s[i]))
+func maxLengthContinuous(ss string) int {
+	dumMapping := make(map[string]bool)
+	count := 0
+	for _, s := range ss {
+		if _, ok := dumMapping[string(s)]; ok {
+			break
+		}
+		count = count + 1
+		dumMapping[string(s)] = true
 	}
-	return m
+	return count
 }
