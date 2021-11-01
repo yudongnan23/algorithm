@@ -39,14 +39,18 @@ func lengthOfLongestSubstring(s string) int {
  * 暴力破解
  */
 func lengthOfLongestSubstringMethod2(s string) int {
-	count := 0
+	maxLength := 0
 	for i := range s {
-		curCount := maxLengthContinuous(s[i:])
-		if curCount > count {
-			count = curCount
+		ss := s[i:]
+		if len(ss) < maxLength {
+			continue
+		}
+		curCount := maxLengthContinuous(ss)
+		if curCount > maxLength {
+			maxLength = curCount
 		}
 	}
-	return count
+	return maxLength
 }
 
 func maxLengthContinuous(ss string) int {
