@@ -1,6 +1,7 @@
 package _0211127
 
 import (
+	"github.com/yudongnan23/algorithm"
 	"reflect"
 	"testing"
 )
@@ -29,6 +30,28 @@ func Test_exchange(t *testing.T) {
 				}
 			}
 			t.Errorf("rlt: %v not one of want: %v", rlt, p.want)
+		})
+	}
+}
+
+type reverseWordsParam struct {
+		name string
+		arg string
+		want string
+}
+
+func Test_reverseWords(t *testing.T) {
+	params := []reverseWordsParam{
+		{
+			name: "1",
+			arg: "i am a student",
+			want: "student a am i",
+		},
+	}
+
+	for _, p := range params {
+		t.Run(p.name, func(t *testing.T){
+			algorithm.New(reverseWords(p.arg), p.want, t).Valid()
 		})
 	}
 }
