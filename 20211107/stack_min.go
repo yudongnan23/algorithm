@@ -57,3 +57,75 @@ func (c *MinStack) Top() int {
 func (c *MinStack) Min() int {
 	return c.min
 }
+
+// 以下为双向链表实现
+//type MinStack struct {
+//	head *node
+//	tail *node
+//}
+//
+//type node struct {
+//	v       int
+//	next    *node
+//	pre     *node
+//	curMin  int
+//}
+//
+///** initialize your data structure here. */
+//func Constructor() MinStack {
+//	m := MinStack{
+//		head:  nil,
+//		tail: nil,
+//	}
+//	return m
+//}
+//
+//func (m *MinStack) Push(v int)  {
+//	n := node{
+//		v: v,
+//	}
+//
+//	if m.head == nil {
+//		n.curMin = v
+//		m.head = &n
+//		m.tail = &n
+//		return
+//	}
+//
+//	n.curMin = m.tail.curMin
+//	if v < m.tail.curMin {
+//		n.curMin = v
+//	}
+//
+//	n.pre = m.tail
+//	m.tail.next = &n
+//	m.tail = m.tail.next
+//
+//	return
+//}
+//
+//func (m *MinStack) Pop()  {
+//	if m.tail == nil {
+//		return
+//	}
+//
+//	if m.tail == m.head {
+//		m.head = nil
+//		m.tail = nil
+//		return
+//	}
+//
+//	m.tail = m.tail.pre
+//}
+//
+//func (m *MinStack) Top() int {
+//	if m.tail == nil {
+//		return 0
+//	}
+//
+//	return m.tail.v
+//}
+//
+//func (m *MinStack) Min() int {
+//	return m.tail.curMin
+//}
