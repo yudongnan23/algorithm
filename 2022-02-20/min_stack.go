@@ -11,7 +11,6 @@ type MinStack struct {
 type node struct {
 	v      int
 	next   *node
-	pre    *node
 	CurMin int
 }
 
