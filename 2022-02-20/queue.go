@@ -1,14 +1,12 @@
-package algorithm
-
-import "github.com/yudongnan23/algorithm"
+package _022_02_20
 
 // 使用两个栈实现一个队列
 // leetcode链接：https://leetcode-cn.com/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof/
 // 思路：使用双向链表实现
 
 type Queue struct {
-	head *algorithm.DoubleLinkedListNode
-	tail *algorithm.DoubleLinkedListNode
+	head *DoubleLinkedListNode
+	tail *DoubleLinkedListNode
 }
 
 func Constructor() Queue {
@@ -19,7 +17,7 @@ func Constructor() Queue {
 }
 
 func (q *Queue) AppendTail(v int) {
-	node := algorithm.DoubleLinkedListNode{
+	node := DoubleLinkedListNode{
 		V: v,
 	}
 

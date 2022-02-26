@@ -1,10 +1,4 @@
-package algorithm
-
-// 单向链表节点
-type LinkedListNode struct {
-	V    int
-	Next *LinkedListNode
-}
+package _022_02_20
 
 // 双向链表节点
 type DoubleLinkedListNode struct {

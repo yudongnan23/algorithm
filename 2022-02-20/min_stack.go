@@ -1,4 +1,4 @@
-package algorithm
+package _022_02_20
 
 // 实现包含min函数的栈
 // leetcode链接：https://leetcode-cn.com/problems/bao-han-minhan-shu-de-zhan-lcof/
