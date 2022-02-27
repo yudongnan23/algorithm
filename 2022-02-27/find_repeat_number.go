@@ -4,7 +4,7 @@ package _022_02_27
 // leetcode链接：https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/
 
 /**
- * 思路:
+ * 思路：遍历数组，并使用map记录出现的数字
  */
 
 func findRepeatNumber(nums []int) int {
