@@ -3,7 +3,7 @@ package _022_03_06
 // 从上到下打印二叉树
 // leetcode链接：https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-lcof/
 
-// 思路：
+// 思路：广度遍历
 
 type TreeNode struct {
 	Val   int
