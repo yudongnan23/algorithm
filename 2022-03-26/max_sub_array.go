@@ -4,46 +4,28 @@ package _022_03_26
 // leetcode链接：https://leetcode-cn.com/problems/lian-xu-zi-shu-zu-de-zui-da-he-lcof/
 
 /**
- * 思路：
+ * 思路：动态规划
  */
-
-type maxSub struct {
-	maxSum      int
-	intervalSum int
-}
 
 func maxSubArray(nums []int) int {
 	if len(nums) == 0 {
 		return 0
 	}
 
-	maxSub := maxSub{
-		maxSum:      nums[0],
-		intervalSum: 0,
-	}
+	dynamic := make([]int, len(nums))
+	dynamic[0] = nums[0]
 
 	max := nums[0]
 
 	for i := 1; i < len(nums); i++ {
-		if nums[i] < 0 {
-			maxSub.intervalSum = maxSub.intervalSum + nums[i]
-			continue
+		if sum := dynamic[i-1] + nums[i]; sum > dynamic[i-1] {
+			dynamic[i] = sum
+		} else {
+			dynamic[i] = nums[i]
 		}
-		if nums[i] > maxSub.maxSum {
-			maxSub.maxSum = nums[i]
-			maxSub.intervalSum = 0
-			if nums[i] > max {
-				max = nums[i]
-			}
-			continue
-		}
-		if curSum := nums[i] + maxSub.maxSum + maxSub.intervalSum; curSum > maxSub.maxSum {
-			maxSub.maxSum = curSum
-			maxSub.intervalSum = 0
-			if curSum > max {
-				max = curSum
-			}
-			continue
+
+		if dynamic[i] > max {
+			max = dynamic[i]
 		}
 	}
 
