@@ -14,62 +14,53 @@ func search(nums []int, target int) int {
 
 	left := 0
 	right := len(nums) - 1
-	var start int
+	startIndex := 0
 
-	for left < right {
+	for left <= right {
 		mid := (left + right) / 2
 
 		if nums[mid] == target {
-			start = mid
+			startIndex = mid
 			break
-		}
-
-		if nums[mid] < target {
-			left = mid + 1
 		}
 
 		if nums[mid] > target {
 			right = mid - 1
 		}
+
+		if nums[mid] < target {
+			left = mid + 1
+		}
 	}
 
-	return newStatCounter(nums, target, start).statLeftCount() +
-		newStatCounter(nums, target, start+1).statRightCount()
-}
-
-type statCounter struct {
-	nums   []int
-	target int
-	start  int
-}
-
-func newStatCounter(nums []int, target int, start int) *statCounter {
-	return &statCounter{
-		nums:   nums,
-		target: target,
-		start:  start,
+	if nums[startIndex] == target {
+		return countLeft(&nums, startIndex, target) + countRight(&nums, startIndex, target) + 1
 	}
+
+	return 0
 }
 
-func (s *statCounter) statLeftCount() int {
+func countLeft(nums *[]int, startIndex, target int) int {
 	var count int
 
-	for i := s.start; i >= 0; i-- {
-		if s.nums[i] == s.target {
-			count++
+	for i := startIndex - 1; i >= 0; i-- {
+		if (*nums)[i] != target {
+			break
 		}
+		count++
 	}
 
 	return count
 }
 
-func (s *statCounter) statRightCount() int {
+func countRight(nums *[]int, startIndex, target int) int {
 	var count int
 
-	for i := s.start; i < len(s.nums); i++ {
-		if s.nums[i] == s.target {
-			count++
+	for i := startIndex + 1; i < len(*(nums)); i++ {
+		if (*nums)[i] != target {
+			break
 		}
+		count++
 	}
 
 	return count
