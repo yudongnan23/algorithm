@@ -7,29 +7,23 @@ package _022_03_19
  * 思路：动态规划
  */
 
-type profitElem struct {
-	maxProfit int
-	minIdx    int
-}
-
 func maxProfit(prices []int) int {
-	if len(prices) < 2 {
+	if len(prices) <= 1{
 		return 0
 	}
 
-	d := profitElem{
-		maxProfit: 0,
-		minIdx:    0,
-	}
+	var maxProfit int
+	var minIndex int
 
 	for i := 1; i < len(prices); i++ {
-		maxSum := prices[i] - prices[d.minIdx]
-		if maxSum > d.maxProfit {
-			d.maxProfit = maxSum
+		if prices[i] - prices[minIndex] > maxProfit {
+			maxProfit = prices[i] - prices[minIndex]
 		}
-		if prices[i] < prices[d.minIdx] {
-			d.minIdx = i
+
+		if prices[i] < prices[minIndex] {
+			minIndex = i
 		}
 	}
-	return d.maxProfit
+
+	return maxProfit
 }
