@@ -4,7 +4,7 @@ package _022_04_17
 // leetcode链接：https://leetcode-cn.com/problems/shan-chu-lian-biao-de-jie-dian-lcof/
 
 /**
- * 思路：
+ * 思路：遍历
  */
 
 type ListNode struct {
